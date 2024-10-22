@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="display: flex; justify-content: center; align-items: center;">
+    <div id="anotherLine" style="padding: 50px; background-color: antiquewhite; border-radius: 10px;">
+        <h1 id="time"> </h1>
+    <div style="border: 2px solid black; border-radius: 10px; padding: 10px; margin: 2px;">
+        <label>Nama Mahasiswa</label>
+        <input type="text" name="name[]" id="nama">
+        <br>
+        <button onclick="addMore()">Tambah data mahasiswa</button>
+        <button id="myBtn"> Submit </button>
+    </div>
+    </div> 
+    
+    <script>
+        function addMore() {
+            var nameInput = document.getElementById(`nama`);
+            var namevalue = nameInput.value.toUpperCase();
+
+            var objDiv = document.getElementById('anotherLine');
+            console.log(objDiv);
+
+            var divCreate = document.createElement('div');
+
+            divCreate.innerHTML = 
+        `<div style="border: 2px solid black; border-radius: 10px; padding: 10px; margin: 2px;">
+            <label>Nama Mahasiswa</label>
+            <input type="text" name="name[]" id="nama" value="${namevalue}">
+            <br>
+            <button onclick="addMore()">Tambah data mahasiswa</button>
+            <button id="myBtn"> Submit </button>
+        </div>`
+
+            objDiv.appendChild(divCreate);
+
+            nameInput = '';
+
+            let time = document.getElementById("time")
+
+            document.getElementById("myBtn").addEventListener("click", function () {
+                location.reload();
+                alert("Selamat data telah berhasil disimpan");
+            });
+
+    setInterval(() =>{
+      let d = new Date();
+      time.innerHTML = d.toLocaleTimeString(); 
+    },1000)
+        }
+    </script>
+</body>
+</html>
